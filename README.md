@@ -2,11 +2,15 @@
 A powerful AI model that translates Chinese, Tamil, Jawi, and English into Bahasa Melayu with high accuracy.
 
 objective 
-From Language	To Language	Example
-🇨🇳 Chinese	🇲🇾 Malay	你好吗 → Apa khabar
-🇮🇳 Tamil	🇲🇾 Malay	வணக்கம் → Halo
-🕌 Jawi	🇲🇾 Malay	Jawi text → Malay
-🇺🇸 English	🇲🇾 Malay	Good morning → Selamat pagi
+## 🎯 Translation Objectives
+
+| From Language | To Language | Example |
+|---------------|-------------|---------|
+| 🇨🇳 Chinese | 🇲🇾 Malay | `你好吗` → `Apa khabar` |
+| 🇮🇳 Tamil | 🇲🇾 Malay | `வணக்கம்` → `Halo` |
+| 🕌 Jawi | 🇲🇾 Malay | Jawi text → Malay |
+| 🇺🇸 English | 🇲🇾 Malay | `Good morning` → `Selamat pagi` |
+
 
 # Dataset 
 i take the data from this website and i using stage 2 part 1 data 
