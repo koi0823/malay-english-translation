@@ -202,6 +202,7 @@ Output: "Halo apa khabar"
 - BLEU improved from **0.19 → 0.33**
 - Generation Length remained stable around **14 tokens**
 
+## the training duration is 1.34 hour
 ```
 final result will be 
 📊 EVAL - Step 7335:
