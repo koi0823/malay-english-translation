@@ -212,6 +212,7 @@ final result will be
 
 # Score of BLEU
 0.33 / 1 (that is 0 - 1 scale)
+
 is **0.33** THAT IS **33%**
 
 
