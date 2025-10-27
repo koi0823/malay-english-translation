@@ -115,6 +115,20 @@ After Preprocessing:
 | Tamil | `terjemah Tamil ke Bahasa Melayu: வணக்கம்` | `Halo` |
 | Jawi | `terjemah Jawi ke Bahasa Melayu: [Jawi text]` | `[Malay translation]` |
 
+# before training 
+split the data is 90 / 10
+```
+📊 Original dataset: 173,799 samples
+🎯 Final dataset: 156,419 train, 17,380 test
+
+```
+
+## convert the text to numbers ( tokenization )
+```
+Input: "terjemah Inggeris ke Bahasa Melayu: Hello"
+→ Tokenizer converts to: [125, 489, 234, 12, 67, 89, 345]
+```
+
 # training at RunPod
 using 1x RTX 5090 for the training
 https://www.runpod.io/ 
