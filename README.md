@@ -115,25 +115,26 @@ After Preprocessing:
 | Tamil | `terjemah Tamil ke Bahasa Melayu: வணக்கம்` | `Halo` |
 | Jawi | `terjemah Jawi ke Bahasa Melayu: [Jawi text]` | `[Malay translation]` |
 
-
-
-
-
 # training at RunPod
 using 1x RTX 5090 for the training
 https://www.runpod.io/ 
 
 all this parameter is make the performance of the 5090 at 70-90% is full utilization and also Balance and stable 
+```python
 MAX_SOURCE_LENGTH = 128    
 MAX_TARGET_LENGTH = 128    
 BATCH_SIZE = 64            
 LEARNING_RATE = 3e-4       
-EPOCHS = 3          
+EPOCHS = 3
+```         
 
-how the training code will be reading is like this 
+### how the training code will be reading is like this 
+
+```
 Input: "terjemah Inggeris ke Bahasa Melayu: Hello how are you"
 [tokenizer converts this to tokens]
 Output: "Halo apa khabar"
+```
 
 # Result
 Step	Training Loss	Validation Loss	Bleu	Gen Len
