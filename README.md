@@ -211,6 +211,9 @@ final result will be
 📊 Final BLEU score: 0.33
 ```
 
+# Wandb link 
+https://wandb.ai/koihaha/malay-english-translation/workspace?nw=nwuserkclin01
+
 # Score of BLEU
 0.33 / 1 (that is 0 - 1 scale)
 
