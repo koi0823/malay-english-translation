@@ -129,6 +129,10 @@ EPOCHS = 3
 ```         
 
 ### how the training code will be reading is like this 
+```python
+inputs = [str(x) for x in examples["src"]]
+targets = [str(x) for x in examples["tgt"]]
+```
 
 ```
 Input: "terjemah Inggeris ke Bahasa Melayu: Hello how are you"
