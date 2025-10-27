@@ -1,12 +1,12 @@
 # malay-english-translation
-using mesolitica/nanot5-small-malaysian-cased for a training with RTX5090 for 1 hour with 34 min plus validation 1-2 hour with a BLEU score is 0.33
+A powerful AI model that translates Chinese, Tamil, Jawi, and English into Bahasa Melayu with high accuracy.
 
 objective 
-
-Chinese → Malay
-Tamil → Malay
-Jawi/Arabic → Malay
-English → Malay
+From Language	To Language	Example
+🇨🇳 Chinese	🇲🇾 Malay	你好吗 → Apa khabar
+🇮🇳 Tamil	🇲🇾 Malay	வணக்கம் → Halo
+🕌 Jawi	🇲🇾 Malay	Jawi text → Malay
+🇺🇸 English	🇲🇾 Malay	Good morning → Selamat pagi
 
 # Dataset 
 i take the data from this website and i using stage 2 part 1 data 
