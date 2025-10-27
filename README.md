@@ -41,29 +41,30 @@ def clean_text(text):
     text = text.replace('```', '')
     return text.strip()
 Example Transformation:
-
+```
+```txt
 Input:  "```python\nprint('hello')\n``` Some actual text here"
 Output: "Some actual text here"
 
-🎯 Quality Filtering
-
-Purpose: Ensure only natural language text proceeds to training.
-
+```
+### 🎯 Quality Filtering
+**Purpose:** Ensure only natural language text proceeds to training.
+```python
 def is_natural_text(text, threshold=0.6):
     # Calculate ratio of alphabetic/whitespace characters
     alpha_ratio = sum(c.isalpha() or c.isspace() for c in text) / len(text)
     return alpha_ratio >= threshold
-
+```
 Why 60% Threshold?
 
 ✅ Effectively filters out code, URLs, and corrupted data
 ✅ Allows normal punctuation and numbers in valid sentences
 ✅ Maintains linguistic quality while being permissive enough
 
-🌐 Language Detection
+### 🌐 Language Detection
 
-Purpose: Automatically identify source language using Unicode analysis.
-
+***Purpose:*** Automatically identify source language using Unicode analysis.
+```python
 def detect_language(text):
     if any('\u4e00' <= char <= '\u9fff' for char in text):
         return 'zh'  # Chinese characters
@@ -73,27 +74,15 @@ def detect_language(text):
         return 'ms-arab'  # Jawi/Arabic script
     else:
         return 'ms-latn'  # Latin script (English/Malay)
-
-
-Advantages:
-
-🚀 Fast: No external API calls or dictionary lookups
-
-🎯 Accurate: Unicode ranges provide reliable detection
-
-💪 Robust: Works with mixed or noisy text
-
-🎪 Instructional Prompt Engineering
-
-Purpose: Guide the model with explicit translation instructions.
-
+```
+```python
 prefixes = {
     'zh': 'terjemah Cina ke Bahasa Melayu: ',
     'ta': 'terjemah Tamil ke Bahasa Melayu: ',
     'ms-arab': 'terjemah Jawi ke Bahasa Melayu: ',
     'ms-latn': 'terjemah Inggeris ke Bahasa Melayu: '
 }
-
+```
 # Apply prefix to source text
 prefix = prefixes.get(detected_language, 'terjemah ke Bahasa Melayu: ')
 src_with_instruction = prefix + original_src
