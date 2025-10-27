@@ -17,10 +17,12 @@ i take the data from this website and i using stage 2 part 1 data
 that is malay , english , chinese , tamil , jawi ,latin 
 
 total dataset size is :173,799k
+
 https://github.com/koi0823/malay-english-translation
 
 # pretrained model 
 i using nanot5-small-malaysian-cased
+
 https://huggingface.co/mesolitica/nanot5-small-malaysian-cased
 
 # for the preprocessing script about
