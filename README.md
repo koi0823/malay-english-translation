@@ -25,32 +25,105 @@ i using nanot5-small-malaysian-cased
 
 https://huggingface.co/mesolitica/nanot5-small-malaysian-cased
 
-# for the preprocessing script about
-there is text normalization , quality filtering , language detection
+## 🔧 Data Preprocessing Pipeline
 
-for the normalization i using remove for the spacing and remove and containing code block 
-for examaple 
-  Input: "```python\nprint('hello')\n``` Some text"
-  Output: "Some text"
+Our preprocessing pipeline ensures high-quality training data through multiple intelligent filtering and enhancement steps.
 
-for the natural language validation
-The 60% rule was chosen because it works well to tell apart normal text from code or structured data, 
-while still allowing some punctuation and numbers in real sentences.
+---
 
-for the language detection
-approach unicode rules to tell different language without depending on dictionaries that can easily make 
+### 📝 Text Normalization
+**Purpose:** Clean raw text by removing code blocks and formatting artifacts.
 
-so my preprocessing is using 
-src = prefix + src
+```python
+def clean_text(text):
+    # Remove code block headers and backticks
+    text = re.sub(r'```[a-zA-Z]*\n', '', str(text))
+    text = text.replace('```', '')
+    return text.strip()
+Example Transformation:
 
-then save to dataset
-Input (src): "terjemah Inggeris ke Bahasa Melayu: Hello how are you"
-Target (tgt): "Halo apa khabar"
+Input:  "```python\nprint('hello')\n``` Some actual text here"
+Output: "Some actual text here"
 
-Input (src): "terjemah Cina ke Bahasa Melayu: 你好吗"  
-Target (tgt): "Apa khabar"
+🎯 Quality Filtering
 
-and combine to make a hugging face dataaset that is parquet
+Purpose: Ensure only natural language text proceeds to training.
+
+def is_natural_text(text, threshold=0.6):
+    # Calculate ratio of alphabetic/whitespace characters
+    alpha_ratio = sum(c.isalpha() or c.isspace() for c in text) / len(text)
+    return alpha_ratio >= threshold
+
+Why 60% Threshold?
+
+✅ Effectively filters out code, URLs, and corrupted data
+✅ Allows normal punctuation and numbers in valid sentences
+✅ Maintains linguistic quality while being permissive enough
+
+🌐 Language Detection
+
+Purpose: Automatically identify source language using Unicode analysis.
+
+def detect_language(text):
+    if any('\u4e00' <= char <= '\u9fff' for char in text):
+        return 'zh'  # Chinese characters
+    elif any('\u0b80' <= char <= '\u0bff' for char in text):
+        return 'ta'  # Tamil script
+    elif any(char in 'ڽڬڠݢۏڔڎڃ' for char in text):
+        return 'ms-arab'  # Jawi/Arabic script
+    else:
+        return 'ms-latn'  # Latin script (English/Malay)
+
+
+Advantages:
+
+🚀 Fast: No external API calls or dictionary lookups
+
+🎯 Accurate: Unicode ranges provide reliable detection
+
+💪 Robust: Works with mixed or noisy text
+
+🎪 Instructional Prompt Engineering
+
+Purpose: Guide the model with explicit translation instructions.
+
+prefixes = {
+    'zh': 'terjemah Cina ke Bahasa Melayu: ',
+    'ta': 'terjemah Tamil ke Bahasa Melayu: ',
+    'ms-arab': 'terjemah Jawi ke Bahasa Melayu: ',
+    'ms-latn': 'terjemah Inggeris ke Bahasa Melayu: '
+}
+
+# Apply prefix to source text
+prefix = prefixes.get(detected_language, 'terjemah ke Bahasa Melayu: ')
+src_with_instruction = prefix + original_src
+
+📊 Final Dataset Structure
+
+Before Preprocessing:
+
+{
+    "src": "Hello how are you",
+    "tgt": "Halo apa khabar"
+}
+
+
+After Preprocessing:
+
+{
+    "src": "terjemah Inggeris ke Bahasa Melayu: Hello how are you",
+    "tgt": "Halo apa khabar"
+}
+
+🌏 Multi-language Examples
+Language	Source (src)	Target (tgt)
+English	terjemah Inggeris ke Bahasa Melayu: Good morning	Selamat pagi
+Chinese	terjemah Cina ke Bahasa Melayu: 你好吗	Apa khabar
+Tamil	terjemah Tamil ke Bahasa Melayu: வணக்கம்	Halo
+Jawi	terjemah Jawi ke Bahasa Melayu: [Jawi text]	[Malay translation]
+
+```
+
 
 # training at RunPod
 using 1x RTX 5090 for the training
