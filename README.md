@@ -82,13 +82,14 @@ prefixes = {
     'ms-arab': 'terjemah Jawi ke Bahasa Melayu: ',
     'ms-latn': 'terjemah Inggeris ke Bahasa Melayu: '
 }
-```
+
 # Apply prefix to source text
 prefix = prefixes.get(detected_language, 'terjemah ke Bahasa Melayu: ')
 src_with_instruction = prefix + original_src
+```
 
-📊 Final Dataset Structure
-
+### 📊 Final Dataset Structure
+```python
 Before Preprocessing:
 
 {
@@ -103,15 +104,19 @@ After Preprocessing:
     "src": "terjemah Inggeris ke Bahasa Melayu: Hello how are you",
     "tgt": "Halo apa khabar"
 }
-
-🌏 Multi-language Examples
-Language	Source (src)	Target (tgt)
-English	terjemah Inggeris ke Bahasa Melayu: Good morning	Selamat pagi
-Chinese	terjemah Cina ke Bahasa Melayu: 你好吗	Apa khabar
-Tamil	terjemah Tamil ke Bahasa Melayu: வணக்கம்	Halo
-Jawi	terjemah Jawi ke Bahasa Melayu: [Jawi text]	[Malay translation]
-
 ```
+
+### 🌏 Multi-language Examples
+
+| Language | Source (`src`) | Target (`tgt`) |
+|-----------|----------------|----------------|
+| English | `terjemah Inggeris ke Bahasa Melayu: Good morning` | `Selamat pagi` |
+| Chinese | `terjemah Cina ke Bahasa Melayu: 你好吗` | `Apa khabar` |
+| Tamil | `terjemah Tamil ke Bahasa Melayu: வணக்கம்` | `Halo` |
+| Jawi | `terjemah Jawi ke Bahasa Melayu: [Jawi text]` | `[Malay translation]` |
+
+
+
 
 
 # training at RunPod
